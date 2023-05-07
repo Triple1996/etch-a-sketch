@@ -28,11 +28,11 @@ main{
 }
 
 footer {
-    margin: 50px;
+    margin: 40px;
 }
 button{
     flex-direction: row;
-    height: 50px;
+    height: 35px;
     width: 250px;
     margin: 5px;
 }

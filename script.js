@@ -17,7 +17,6 @@ function createGrid(rows, cols){
         boxItem.addEventListener("mousedown", toggleMouseDown);
         boxItem.addEventListener("mouseup", toggleMouseUp);
         boxItem.addEventListener("mouseenter", hoverEffect);
-        //boxItem.setAttribute('filter', 'brightness(0)');
         boxItem.style.background = "rgb(255, 255, 255)";
         gridContainer.appendChild(boxItem).className = "grid-box";
     }
@@ -38,6 +37,7 @@ function redrawGrid(){
 
 function hoverEffect(e){
 
+    //Rainbow mode
     // if (mouseDown){
     //     console.log(e.target.style.background);
     //     let rgb1 = Math.floor(Math.random() * 255);
@@ -48,10 +48,10 @@ function hoverEffect(e){
     //     e.target.style.background = color;
     // }
 
+    //Shading mode
     if (mouseDown){
         currentColor = e.target.style.background;
         let rgbVals = extractRgbVals(currentColor);
-        console.log("mousedown: " + rgbVals);
         let currentRGB1 = rgbVals[0];
         let currentRGB2 = rgbVals[1];
         let currentRGB3 = rgbVals[2];
