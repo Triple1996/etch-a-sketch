@@ -10,6 +10,7 @@ function createGrid(rows, cols){
     for (let i = 0; i < (rows * cols); i++){
         const boxItem = document.createElement('div');
         boxItem.addEventListener('mouseover', hoverEffect);
+        // boxItem.setAttribute('filter', 'brightness(0)');
         gridContainer.appendChild(boxItem).className = "grid-box";
     }
 }
@@ -38,11 +39,17 @@ function deleteGrid(){
 }
 
 function hoverEffect(e){
-    console.log("hovering");
+    //console.log(e.target.style.background);
+
+    let currentBrightness = e.target.style.filter;
+    let newBrightness = currentBrightness + 1;
+
+    console.log("current: " + currentBrightness + " new: " + newBrightness);
+    e.target.style.filter = "brightness(" + newBrightness + ")";
+
     let rgb1 = Math.floor(Math.random() * 255)
     let rgb2 = Math.floor(Math.random() * 255)
     let rgb3 = Math.floor(Math.random() * 255)
-
 
     let color = "rgb(" + rgb1+ ", " + rgb2 + ", " + rgb3 + ")";
     e.target.style.background = color;
