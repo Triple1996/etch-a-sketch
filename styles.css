@@ -6,7 +6,11 @@ body{
     display: flex;
     justify-content: center;
 }
-
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 #grid-container{
     margin-top: 10%;
     width: 750px;
@@ -16,6 +20,11 @@ body{
     grid-template-columns: repeat(var(--number-cols), 1fr);
 }
 
+#redraw-grid-button{
+    flex-direction: row;
+    height: 50px;
+    width: 250px;
+}
 .grid-box{
     border: solid black 1px;
 }
