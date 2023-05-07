@@ -2,6 +2,9 @@
     --number-rows: 16;
     --number-cols: 16;
 }
+html {
+    background-color: rgb(227, 200, 253);
+}
 body{
     display: flex;
     flex-direction: column;
@@ -14,8 +17,10 @@ main{
     align-items: center;
 }
 #grid-container{
+    box-shadow: 10px 10px 30px black;
+    background-color: rgb(241, 241, 241);
     margin-top: 10%;
-    width: 750px;
+    width: 600px;
     height: 600px;
     display: grid;
     grid-template-rows: repeat(var(--number-rows), 1fr);
@@ -23,8 +28,7 @@ main{
 }
 
 footer {
-    margin: 10px;
-    background-color: gray;
+    margin: 50px;
 }
 button{
     flex-direction: row;

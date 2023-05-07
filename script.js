@@ -38,8 +38,14 @@ function deleteGrid(){
 }
 
 function hoverEffect(e){
-    console.log("hovering");   
-    e.target.style.background = 'red';
+    console.log("hovering");
+    let rgb1 = Math.floor(Math.random() * 255)
+    let rgb2 = Math.floor(Math.random() * 255)
+    let rgb3 = Math.floor(Math.random() * 255)
+
+
+    let color = "rgb(" + rgb1+ ", " + rgb2 + ", " + rgb3 + ")";
+    e.target.style.background = color;
 }
 
 createGrid(squaresPerSide, squaresPerSide);
