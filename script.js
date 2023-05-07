@@ -5,8 +5,13 @@ const resetBtn = document.querySelector('#reset-button');
 let mouseDown = false;
 let squaresPerSide = 16;
 
+
 redrawGridBtn.addEventListener('click', redrawGrid);
 resetBtn.addEventListener('click', resetGrid);
+
+createGrid(squaresPerSide, squaresPerSide);
+
+
 function createGrid(rows, cols){
     for (let i = 0; i < (rows * cols); i++){
         const boxItem = document.createElement('div');
@@ -31,6 +36,18 @@ function redrawGrid(){
     resetGrid();
 }
 
+function hoverEffect(e){
+
+    if (mouseDown){
+        let rgb1 = Math.floor(Math.random() * 255);
+        let rgb2 = Math.floor(Math.random() * 255);
+        let rgb3 = Math.floor(Math.random() * 255);
+
+        let color = "rgb(" + rgb1+ ", " + rgb2 + ", " + rgb3 + ")";
+        e.target.style.background = color;
+    }
+}
+
 function deleteGrid(){
     while (gridContainer.firstChild){
         gridContainer.removeChild(gridContainer.lastChild);
@@ -50,19 +67,3 @@ function toggleMouseDown(e){
 function toggleMouseUp(e){
     mouseDown = false;
 }
-
-function hoverEffect(e){
-
-    if (mouseDown){
-        let rgb1 = Math.floor(Math.random() * 255);
-        let rgb2 = Math.floor(Math.random() * 255);
-        let rgb3 = Math.floor(Math.random() * 255);
-
-        let color = "rgb(" + rgb1+ ", " + rgb2 + ", " + rgb3 + ")";
-        e.target.style.background = color;
-    }
-
-
-}
-
-createGrid(squaresPerSide, squaresPerSide);
