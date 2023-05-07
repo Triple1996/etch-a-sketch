@@ -51,11 +51,12 @@ function hoverEffect(e){
     if (mouseDown){
         currentColor = e.target.style.background;
         let rgbVals = extractRgbVals(currentColor);
+        console.log("mousedown: " + rgbVals);
         let currentRGB1 = rgbVals[0];
         let currentRGB2 = rgbVals[1];
         let currentRGB3 = rgbVals[2];
 
-        let newColor = "rgb(" + (currentRGB1 * 0.9) + ", " + (currentRGB2 * 0.9) + ", " + (currentRGB3 * 0.9) + ")";
+        let newColor = "rgb(" + (currentRGB1 - 35) + ", " + (currentRGB2 - 35) + ", " + (currentRGB3 - 35) + ")";
         e.target.style.background = newColor;
     }
 
@@ -63,10 +64,9 @@ function hoverEffect(e){
 
 function extractRgbVals(color){
     // color = rgb(x, y, z)
-    console.log("extract vals");
-    color.replace(/[a-z]/gi, '')
-    console.log("color: " + color); 
-    return color;
+    color = color.replace(/[a-z(,)]/gi, '');
+    let colors = color.split(" ");
+    return colors;
 }
 
 function deleteGrid(){
