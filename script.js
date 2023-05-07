@@ -1,10 +1,11 @@
 const gridContainer = document.querySelector('#grid-container');
 const redrawGridBtn = document.querySelector('#redraw-grid-button');
+const resetBtn = document.querySelector('#reset-button');
 
 let squaresPerSide = 16;
 
 redrawGridBtn.addEventListener('click', redrawGrid);
-
+resetBtn.addEventListener('click', resetGrid);
 function createGrid(rows, cols){
     for (let i = 0; i < (rows * cols); i++){
         const boxItem = document.createElement('div');
@@ -22,11 +23,14 @@ function redrawGrid(){
     squaresPerSide = userNumSquares;
     gridContainer.style.setProperty('--number-rows', squaresPerSide);
     gridContainer.style.setProperty('--number-cols', squaresPerSide);
-    console.log("changed sides");
+
+    resetGrid();
+}
+
+function resetGrid(){
     deleteGrid();
     createGrid(squaresPerSide, squaresPerSide);
 }
-
 function deleteGrid(){
     while (gridContainer.firstChild){
         gridContainer.removeChild(gridContainer.lastChild);

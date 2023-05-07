@@ -20,10 +20,11 @@ main{
     grid-template-columns: repeat(var(--number-cols), 1fr);
 }
 
-#redraw-grid-button{
+button{
     flex-direction: row;
     height: 50px;
     width: 250px;
+    margin: 5px;
 }
 .grid-box{
     border: solid black 1px;
