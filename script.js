@@ -13,7 +13,6 @@ function createGrid(rows, cols){
         boxItem.addEventListener("mousedown", toggleMouseDown);
         boxItem.addEventListener("mouseup", toggleMouseUp);
         boxItem.addEventListener("mouseenter", hoverEffect);
-        boxItem.addEventListener("click", hoverEffect);
         // boxItem.setAttribute('filter', 'brightness(0)');
         gridContainer.appendChild(boxItem).className = "grid-box";
     }
@@ -32,14 +31,15 @@ function redrawGrid(){
     resetGrid();
 }
 
-function resetGrid(){
-    deleteGrid();
-    createGrid(squaresPerSide, squaresPerSide);
-}
 function deleteGrid(){
     while (gridContainer.firstChild){
         gridContainer.removeChild(gridContainer.lastChild);
     }
+}
+
+function resetGrid(){
+    deleteGrid();
+    createGrid(squaresPerSide, squaresPerSide);
 }
 
 function toggleMouseDown(e){
