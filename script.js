@@ -17,7 +17,8 @@ function createGrid(rows, cols){
         boxItem.addEventListener("mousedown", toggleMouseDown);
         boxItem.addEventListener("mouseup", toggleMouseUp);
         boxItem.addEventListener("mouseenter", hoverEffect);
-        // boxItem.setAttribute('filter', 'brightness(0)');
+        //boxItem.setAttribute('filter', 'brightness(0)');
+        boxItem.style.background = "rgb(255, 255, 255)";
         gridContainer.appendChild(boxItem).className = "grid-box";
     }
 }
@@ -37,14 +38,35 @@ function redrawGrid(){
 
 function hoverEffect(e){
 
-    if (mouseDown){
-        let rgb1 = Math.floor(Math.random() * 255);
-        let rgb2 = Math.floor(Math.random() * 255);
-        let rgb3 = Math.floor(Math.random() * 255);
+    // if (mouseDown){
+    //     console.log(e.target.style.background);
+    //     let rgb1 = Math.floor(Math.random() * 255);
+    //     let rgb2 = Math.floor(Math.random() * 255);
+    //     let rgb3 = Math.floor(Math.random() * 255);
 
-        let color = "rgb(" + rgb1+ ", " + rgb2 + ", " + rgb3 + ")";
-        e.target.style.background = color;
+    //     let color = "rgb(" + rgb1+ ", " + rgb2 + ", " + rgb3 + ")";
+    //     e.target.style.background = color;
+    // }
+
+    if (mouseDown){
+        currentColor = e.target.style.background;
+        let rgbVals = extractRgbVals(currentColor);
+        let currentRGB1 = rgbVals[0];
+        let currentRGB2 = rgbVals[1];
+        let currentRGB3 = rgbVals[2];
+
+        let newColor = "rgb(" + (currentRGB1 * 0.9) + ", " + (currentRGB2 * 0.9) + ", " + (currentRGB3 * 0.9) + ")";
+        e.target.style.background = newColor;
     }
+
+}
+
+function extractRgbVals(color){
+    // color = rgb(x, y, z)
+    console.log("extract vals");
+    color.replace(/[a-z]/gi, '')
+    console.log("color: " + color); 
+    return color;
 }
 
 function deleteGrid(){
