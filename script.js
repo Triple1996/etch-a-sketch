@@ -48,36 +48,34 @@ function redrawGrid(){
 
 function hoverEffect(e){
 
-    if (mouseDown){
-        if (rainbowMode){
-            if (mouseDown){
-                let rgb1 = Math.floor(Math.random() * 255);
-                let rgb2 = Math.floor(Math.random() * 255);
-                let rgb3 = Math.floor(Math.random() * 255);
-    
-                let color = "rgb(" + rgb1+ ", " + rgb2 + ", " + rgb3 + ")";
-                e.target.style.background = color;
-            }
-        }
-        else if (shadingMode){
-            if (mouseDown){
-                currentColor = e.target.style.background;
-                let rgbVals = extractRgbVals(currentColor);
-                let currentRGB1 = rgbVals[0];
-                let currentRGB2 = rgbVals[1];
-                let currentRGB3 = rgbVals[2];
-    
-                let newColor = "rgb(" 
-                    + (currentRGB1 - SHADING_DARKENING_RATE) + ", " 
-                    + (currentRGB2 - SHADING_DARKENING_RATE) + ", " 
-                    + (currentRGB3 - SHADING_DARKENING_RATE) + ")";
-                e.target.style.background = newColor;
-            }
-        }
-        else {
-            console.error("rainbowMode and shadingMode both equal to false")
-        }
+    if (!mouseDown) return;
+
+    if (rainbowMode){
+        let rgb1 = Math.floor(Math.random() * 255);
+        let rgb2 = Math.floor(Math.random() * 255);
+        let rgb3 = Math.floor(Math.random() * 255);
+        let color = "rgb(" + rgb1+ ", " + rgb2 + ", " + rgb3 + ")";
+
+        e.target.style.background = color;
     }
+    else if (shadingMode){
+        currentColor = e.target.style.background;
+        let rgbVals = extractRgbVals(currentColor);
+        let currentRGB1 = rgbVals[0];
+        let currentRGB2 = rgbVals[1];
+        let currentRGB3 = rgbVals[2];
+    
+        let newColor = "rgb(" 
+            + (currentRGB1 - SHADING_DARKENING_RATE) + ", " 
+            + (currentRGB2 - SHADING_DARKENING_RATE) + ", " 
+            + (currentRGB3 - SHADING_DARKENING_RATE) + ")";
+            
+        e.target.style.background = newColor;
+    }
+    else {
+        console.error("rainbowMode and shadingMode both equal to false")
+    }
+    
 }
 
 function toggleRainbowMode(){
