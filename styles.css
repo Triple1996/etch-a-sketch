@@ -4,11 +4,13 @@
 }
 body{
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 main{
-    display: flex;
-    flex-direction: column;
+    display: inherit;
+    flex-direction: inherit;
     align-items: center;
 }
 #grid-container{
@@ -20,6 +22,10 @@ main{
     grid-template-columns: repeat(var(--number-cols), 1fr);
 }
 
+footer {
+    margin: 10px;
+    background-color: gray;
+}
 button{
     flex-direction: row;
     height: 50px;
