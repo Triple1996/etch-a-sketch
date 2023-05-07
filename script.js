@@ -2,6 +2,7 @@ const gridContainer = document.querySelector('#grid-container');
 const redrawGridBtn = document.querySelector('#redraw-grid-button');
 const resetBtn = document.querySelector('#reset-button');
 
+let mouseDown = false;
 let squaresPerSide = 16;
 
 redrawGridBtn.addEventListener('click', redrawGrid);
@@ -9,7 +10,10 @@ resetBtn.addEventListener('click', resetGrid);
 function createGrid(rows, cols){
     for (let i = 0; i < (rows * cols); i++){
         const boxItem = document.createElement('div');
-        boxItem.addEventListener('mouseover', hoverEffect);
+        boxItem.addEventListener("mousedown", toggleMouseDown);
+        boxItem.addEventListener("mouseup", toggleMouseUp);
+        boxItem.addEventListener("mouseenter", hoverEffect);
+        boxItem.addEventListener("click", hoverEffect);
         // boxItem.setAttribute('filter', 'brightness(0)');
         gridContainer.appendChild(boxItem).className = "grid-box";
     }
@@ -38,21 +42,27 @@ function deleteGrid(){
     }
 }
 
+function toggleMouseDown(e){
+    mouseDown = true;
+    hoverEffect(e);
+}
+
+function toggleMouseUp(e){
+    mouseDown = false;
+}
+
 function hoverEffect(e){
-    //console.log(e.target.style.background);
 
-    let currentBrightness = e.target.style.filter;
-    let newBrightness = currentBrightness + 1;
+    if (mouseDown){
+        let rgb1 = Math.floor(Math.random() * 255);
+        let rgb2 = Math.floor(Math.random() * 255);
+        let rgb3 = Math.floor(Math.random() * 255);
 
-    console.log("current: " + currentBrightness + " new: " + newBrightness);
-    e.target.style.filter = "brightness(" + newBrightness + ")";
+        let color = "rgb(" + rgb1+ ", " + rgb2 + ", " + rgb3 + ")";
+        e.target.style.background = color;
+    }
 
-    let rgb1 = Math.floor(Math.random() * 255)
-    let rgb2 = Math.floor(Math.random() * 255)
-    let rgb3 = Math.floor(Math.random() * 255)
 
-    let color = "rgb(" + rgb1+ ", " + rgb2 + ", " + rgb3 + ")";
-    e.target.style.background = color;
 }
 
 createGrid(squaresPerSide, squaresPerSide);
