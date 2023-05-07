@@ -5,7 +5,6 @@ const resetBtn = document.querySelector('#reset-button');
 let mouseDown = false;
 let squaresPerSide = 16;
 
-
 redrawGridBtn.addEventListener('click', redrawGrid);
 resetBtn.addEventListener('click', resetGrid);
 
