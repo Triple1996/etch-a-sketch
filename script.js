@@ -14,7 +14,11 @@ function createGrid(rows, cols){
 }
 
 function redrawGrid(){
-    let userNumSquares = prompt("enter number of squares per side");
+    let userNumSquares;
+    do {
+        userNumSquares = prompt("enter number of squares per side (2-100)");
+    } while (userNumSquares > 100 || userNumSquares < 2 || isNaN(userNumSquares))
+
     squaresPerSide = userNumSquares;
     gridContainer.style.setProperty('--number-rows', squaresPerSide);
     gridContainer.style.setProperty('--number-cols', squaresPerSide);
