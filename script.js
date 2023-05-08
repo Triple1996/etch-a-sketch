@@ -1,5 +1,8 @@
 const SHADING_DARKENING_RATE = 35;
 const STARTING_SQUARE_COLOR = "rgb(255, 255, 255)";
+const RAINBOW_MODE = "rainbow";
+const SHADING_MODE = "shading";
+
 
 const gridContainer = document.querySelector('#grid-container');
 const redrawGridBtn = document.querySelector('#redraw-grid-button');
@@ -12,8 +15,7 @@ resetBtn.addEventListener('click', resetGrid);
 rainbowBtn.addEventListener('click', toggleRainbowMode);
 shadingBtn.addEventListener('click', toggleShadingMode);
 
-let shadingMode = false;
-let rainbowMode = true;
+let drawingMode = RAINBOW_MODE;
 let mouseDown = false;
 let squaresPerSide = 16;
 
@@ -50,47 +52,38 @@ function hoverEffect(e){
 
     if (!mouseDown) return;
 
-    if (rainbowMode){
-        let rgb1 = Math.floor(Math.random() * 255);
-        let rgb2 = Math.floor(Math.random() * 255);
-        let rgb3 = Math.floor(Math.random() * 255);
-        let color = "rgb(" + rgb1+ ", " + rgb2 + ", " + rgb3 + ")";
-
-        e.target.style.background = color;
+    let rgb1, rgb2, rgb3;
+    switch (drawingMode){
+        case RAINBOW_MODE:
+            rgb1 = Math.floor(Math.random() * 255);
+            rgb2 = Math.floor(Math.random() * 255);
+            rgb3 = Math.floor(Math.random() * 255);
+            color = "rgb(" + rgb1+ ", " + rgb2 + ", " + rgb3 + ")";
+            e.target.style.background = color;
+            break;
+        case SHADING_MODE:
+            currentColor = e.target.style.background;
+            let rgbVals = extractRgbVals(currentColor);
+            rgb1 = rgbVals[0];
+            rgb2 = rgbVals[1];
+            rgb3 = rgbVals[2];
+            newColor = "rgb(" 
+                + (rgb1 - SHADING_DARKENING_RATE) + ", " 
+                + (rgb2 - SHADING_DARKENING_RATE) + ", " 
+                + (rgb3 - SHADING_DARKENING_RATE) + ")";   
+            e.target.style.background = newColor;
+            break;
+        default:
+            console.error("drawingMode is not set")
     }
-    else if (shadingMode){
-        currentColor = e.target.style.background;
-        let rgbVals = extractRgbVals(currentColor);
-        let currentRGB1 = rgbVals[0];
-        let currentRGB2 = rgbVals[1];
-        let currentRGB3 = rgbVals[2];
-    
-        let newColor = "rgb(" 
-            + (currentRGB1 - SHADING_DARKENING_RATE) + ", " 
-            + (currentRGB2 - SHADING_DARKENING_RATE) + ", " 
-            + (currentRGB3 - SHADING_DARKENING_RATE) + ")";
-            
-        e.target.style.background = newColor;
-    }
-    else {
-        console.error("rainbowMode and shadingMode both equal to false")
-    }
-    
 }
 
 function toggleRainbowMode(){
-    resetModes();
-    rainbowMode = true;
+ drawingMode = RAINBOW_MODE;
 }
 
 function toggleShadingMode(){
-    resetModes();
-    shadingMode = true;
-}
-
-function resetModes(){
-    rainbowMode = false;
-    shadingMode = false;
+    drawingMode = SHADING_MODE;
 }
 
 function extractRgbVals(color){
