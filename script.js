@@ -42,6 +42,16 @@ function createGrid(rows, cols){
         gridContainer.appendChild(boxItem).className = "grid-box";
     }
 }
+function deleteGrid(){
+    while (gridContainer.firstChild){
+        gridContainer.removeChild(gridContainer.lastChild);
+    }
+}
+
+function resetGrid(){
+    deleteGrid();
+    createGrid(squaresPerSide, squaresPerSide);
+}
 
 function hoverEffect(e){
 
@@ -78,17 +88,6 @@ function extractRgbVals(color){
     color = color.replace(/[a-z(,)]/gi, '');
     let colors = color.split(" ");
     return colors;
-}
-
-function deleteGrid(){
-    while (gridContainer.firstChild){
-        gridContainer.removeChild(gridContainer.lastChild);
-    }
-}
-
-function resetGrid(){
-    deleteGrid();
-    createGrid(squaresPerSide, squaresPerSide);
 }
 
 function toggleRainbowMode(){
