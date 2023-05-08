@@ -18,10 +18,6 @@ let drawingMode = RAINBOW_MODE;
 let mouseDown = false;
 let squaresPerSide = slider.value;
 
-refresh();
-
-createGrid(squaresPerSide, squaresPerSide);
-
 slider.oninput  = function(){
     squaresPerSide = this.value;
     gridContainer.style.setProperty('--number-rows', squaresPerSide);
@@ -77,14 +73,6 @@ function hoverEffect(e){
     }
 }
 
-function toggleRainbowMode(){
- drawingMode = RAINBOW_MODE;
-}
-
-function toggleShadingMode(){
-    drawingMode = SHADING_MODE;
-}
-
 function extractRgbVals(color){
     // color = rgb(x, y, z)
     color = color.replace(/[a-z(,)]/gi, '');
@@ -103,6 +91,14 @@ function resetGrid(){
     createGrid(squaresPerSide, squaresPerSide);
 }
 
+function toggleRainbowMode(){
+    drawingMode = RAINBOW_MODE;
+}
+   
+function toggleShadingMode(){
+       drawingMode = SHADING_MODE;
+}
+   
 function toggleMouseDown(e){
     mouseDown = true;
     hoverEffect(e);
@@ -111,3 +107,6 @@ function toggleMouseDown(e){
 function toggleMouseUp(e){
     mouseDown = false;
 }
+
+refresh();
+createGrid(squaresPerSide, squaresPerSide);
