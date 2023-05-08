@@ -2,28 +2,40 @@ const SHADING_DARKENING_RATE = 35;
 const STARTING_SQUARE_COLOR = "rgb(255, 255, 255)";
 const RAINBOW_MODE = "rainbow";
 const SHADING_MODE = "shading";
-
+const DEFAULT_SQUARES_PER_SIDE = 16;
 
 const gridContainer = document.querySelector('#grid-container');
-const redrawGridBtn = document.querySelector('#redraw-grid-button');
+const slider = document.querySelector('#slider');
 const resetBtn = document.querySelector('#reset-button');
 const rainbowBtn = document.querySelector('#rainbow-button');
 const shadingBtn = document.querySelector('#shading-button');
 
-redrawGridBtn.addEventListener('click', redrawGrid);
 resetBtn.addEventListener('click', resetGrid);
 rainbowBtn.addEventListener('click', toggleRainbowMode);
 shadingBtn.addEventListener('click', toggleShadingMode);
 
 let drawingMode = RAINBOW_MODE;
 let mouseDown = false;
-let squaresPerSide = 16;
+let squaresPerSide = slider.value;
+
+refresh();
 
 createGrid(squaresPerSide, squaresPerSide);
 
-function troll(){
-    console.error("test");
+slider.oninput  = function(){
+    squaresPerSide = this.value;
+    gridContainer.style.setProperty('--number-rows', squaresPerSide);
+    gridContainer.style.setProperty('--number-cols', squaresPerSide);
+
+    resetGrid();
 }
+
+function refresh(){
+    slider.value = squaresPerSide;
+    gridContainer.style.setProperty('--number-rows', squaresPerSide);
+    gridContainer.style.setProperty('--number-cols', squaresPerSide);
+}
+
 function createGrid(rows, cols){
     for (let i = 0; i < (rows * cols); i++){
         const boxItem = document.createElement('div');
@@ -33,19 +45,6 @@ function createGrid(rows, cols){
         boxItem.style.background = STARTING_SQUARE_COLOR;
         gridContainer.appendChild(boxItem).className = "grid-box";
     }
-}
-
-function redrawGrid(){
-    let userNumSquares;
-    do {
-        userNumSquares = prompt("enter number of squares per side (2-100)");
-    } while (userNumSquares > 100 || userNumSquares < 2 || isNaN(userNumSquares))
-
-    squaresPerSide = userNumSquares;
-    gridContainer.style.setProperty('--number-rows', squaresPerSide);
-    gridContainer.style.setProperty('--number-cols', squaresPerSide);
-
-    resetGrid();
 }
 
 function hoverEffect(e){

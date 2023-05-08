@@ -7,11 +7,13 @@
     </head>
     <body>
         <main>
-            <button id="redraw-grid-button">Redraw Grid</button>
+            <div id="slider-container">
+                <input type="range" min="2" max="100" value="16" id ="slider">
+            </div>
             <button id="reset-button">Clear Grid</button>
             <button id="rainbow-button">Rainbow mode</button>
             <button id="shading-button">Shading mode</button>
-            <div id="grid-container"></div>
+            <div id="grid-container" draggable="false"></div>
         </main>
         <footer>Copyright © 2023 Triple1996</footer>
         <script src="script.js"></script>
