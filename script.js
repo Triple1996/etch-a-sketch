@@ -2,14 +2,18 @@ const SHADING_DARKENING_RATE = 35;
 const STARTING_SQUARE_COLOR = "rgb(255, 255, 255)";
 const RAINBOW_MODE = "rainbow";
 const SHADING_MODE = "shading";
+const COLOR_MODE = "color";
 const DEFAULT_SQUARES_PER_SIDE = 16;
 
 const gridContainer = document.querySelector('#grid-container');
 const slider = document.querySelector('#slider');
 const sliderDisplay = document.querySelector('#slider-display');
-const resetBtn = document.querySelector('#reset-button');
+const colorSelector = document.querySelector('#color-picker');
+const colorBtn = document.querySelector('#color-button');
 const rainbowBtn = document.querySelector('#rainbow-button');
 const shadingBtn = document.querySelector('#shading-button');
+const resetBtn = document.querySelector('#reset-button');
+
 resetBtn.addEventListener('click', resetGrid);
 rainbowBtn.addEventListener('click', toggleRainbowMode);
 shadingBtn.addEventListener('click', toggleShadingMode);
@@ -30,7 +34,15 @@ function refresh(){
     slider.value = squaresPerSide;
     gridContainer.style.setProperty('--number-rows', squaresPerSide);
     gridContainer.style.setProperty('--number-cols', squaresPerSide);
-    drawingMode = rainbowBtn.checked ? RAINBOW_MODE : SHADING_MODE;
+    if (rainbowBtn.checked){
+        drawingMode = RAINBOW_MODE;
+    }
+    else if (shadingBtn.checked){
+        drawingMode = SHADING_MODE;
+    }
+    else if (colorBtn.checked){
+        drawingMode = COLOR_MODE;
+    }
     sliderDisplay.innerHTML = squaresPerSide + " x " + squaresPerSide;
 }
 
@@ -59,7 +71,7 @@ function resetGrid(){
 
 function hoverEffect(e){
     if (!mouseDown) return;
-    
+
     switch (drawingMode){
         case RAINBOW_MODE:
             let rgb1, rgb2, rgb3;
@@ -78,6 +90,9 @@ function hoverEffect(e){
                 + (rgbVals[2] - SHADING_DARKENING_RATE) + ")";   
             e.target.style.background = newColor;
             break;
+        case COLOR_MODE:
+            e.target.style.background = colorSelector.value;
+            break;
         default:
             console.error("drawingMode is not set")
             break;
@@ -91,12 +106,17 @@ function extractRgbVals(color){
     return colors;
 }
 
+function toggleColorMode(){
+    console.log('YAYYY');
+    drawingMode = COLOR_MODE;
+}
+
 function toggleRainbowMode(){
     drawingMode = RAINBOW_MODE;
 }
    
 function toggleShadingMode(){
-       drawingMode = SHADING_MODE;
+    drawingMode = SHADING_MODE;
 }
    
 function toggleMouseDown(e){
