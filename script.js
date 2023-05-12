@@ -40,6 +40,7 @@ function createGrid(rows, cols){
         boxItem.addEventListener("mousedown", toggleMouseDown);
         boxItem.addEventListener("mouseup", toggleMouseUp);
         boxItem.addEventListener("mouseenter", hoverEffect);
+        boxItem.addEventListener("mouseexit", hoverEffect);
         boxItem.style.background = STARTING_SQUARE_COLOR;
         gridContainer.appendChild(boxItem).className = "grid-box";
     }
@@ -57,9 +58,8 @@ function resetGrid(){
 }
 
 function hoverEffect(e){
-
     if (!mouseDown) return;
-
+    
     switch (drawingMode){
         case RAINBOW_MODE:
             let rgb1, rgb2, rgb3;
@@ -80,6 +80,7 @@ function hoverEffect(e){
             break;
         default:
             console.error("drawingMode is not set")
+            break;
     }
 }
 
