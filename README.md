@@ -1,6 +1,7 @@
 # Etch-a-Sketch
  A web-browser implementation of a drawing application similar to an Etch-a-Sketch. This was done as part of my course on The Odin Project
 
+## [Live Preview](https://triple1996.github.io/etch-a-sketch/) 
  ### Things I learned in the making of this application include:
 
  * Manipulating HTML DOM elements with javascript 
