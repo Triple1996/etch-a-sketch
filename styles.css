@@ -62,7 +62,26 @@ main{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 10%;
+    margin: 5%;
+}
+
+#color-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5%;
+}
+
+#color-header{
+    margin-bottom: 5%;
+}
+
+#color-picker{
+    border-radius: 10px;
+    height: 32px;
+    width: 75px;
+    border: none;
 }
 
 #reset-button{
