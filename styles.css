@@ -25,7 +25,7 @@ main{
     align-items: center;
 }
 
-#header{
+#main-header{
     margin-bottom: 50px;
     margin-right: 50px;
 }
@@ -53,13 +53,21 @@ main{
     justify-content: center;
 }
 
+#settings-header{
+    margin-top: 0;
+    margin-bottom: 50px;
+}
+
 #slider-container{
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 10%;
 }
+
 #reset-button{
     width: 100px;
+    margin: 10%;
 }
 
 .radio-button{
