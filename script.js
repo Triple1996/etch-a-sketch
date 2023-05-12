@@ -106,8 +106,9 @@ function extractRgbVals(color){
     return colors;
 }
 
+
 function toggleColorMode(){
-    console.log('YAYYY');
+    if (!colorBtn.checked) colorBtn.checked = true;
     drawingMode = COLOR_MODE;
 }
 
