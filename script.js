@@ -30,6 +30,17 @@ function refresh(){
     slider.value = squaresPerSide;
     gridContainer.style.setProperty('--number-rows', squaresPerSide);
     gridContainer.style.setProperty('--number-cols', squaresPerSide);
+    drawingMode = rainbowBtn.checked ? RAINBOW_MODE : SHADING_MODE;
+    // if (rainbowBtn.checked){
+    //     drawingMode = RAINBOW_MODE;
+    // }
+    // else if (shadingBtn.checked){
+    //     drawingMode = SHADING_MODE;
+    // }
+    // else{
+    //     console.error("No drawing mode set.");
+    // }
+
 }
 
 function createGrid(rows, cols){
@@ -42,6 +53,7 @@ function createGrid(rows, cols){
         gridContainer.appendChild(boxItem).className = "grid-box";
     }
 }
+
 function deleteGrid(){
     while (gridContainer.firstChild){
         gridContainer.removeChild(gridContainer.lastChild);

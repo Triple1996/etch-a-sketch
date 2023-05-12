@@ -7,12 +7,32 @@
     </head>
     <body>
         <main>
-            <div id="slider-container">
-                <input type="range" min="2" max="100" value="16" id ="slider">
+            <div id="settings-container">
+
+                <div id="slider-container">
+                    <input type="range" min="2" max="100" value="16" id ="slider">
+                </div>
+                
+                <button id="reset-button">Clear Grid</button>
+                
+                <input 
+                    type="radio" 
+                    id="rainbow-button" 
+                    name="mode" 
+                    value="rainbow-mode"
+                    onChange="toggleRainbowMode"
+                    checked />
+                <label for="rainbow-button">Rainbow Mode</label>
+
+                <input 
+                    type="radio"
+                    id="shading-button"
+                    name="mode"
+                    value="shading-mode" 
+                    onChange="toggleShadingMode" />
+                <label for="shading-button">Shading Mode</label>
+
             </div>
-            <button id="reset-button">Clear Grid</button>
-            <button id="rainbow-button">Rainbow mode</button>
-            <button id="shading-button">Shading mode</button>
             <div id="grid-container" draggable="false"></div>
         </main>
         <footer>Copyright © 2023 Triple1996</footer>
