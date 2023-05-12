@@ -31,16 +31,6 @@ function refresh(){
     gridContainer.style.setProperty('--number-rows', squaresPerSide);
     gridContainer.style.setProperty('--number-cols', squaresPerSide);
     drawingMode = rainbowBtn.checked ? RAINBOW_MODE : SHADING_MODE;
-    // if (rainbowBtn.checked){
-    //     drawingMode = RAINBOW_MODE;
-    // }
-    // else if (shadingBtn.checked){
-    //     drawingMode = SHADING_MODE;
-    // }
-    // else{
-    //     console.error("No drawing mode set.");
-    // }
-
 }
 
 function createGrid(rows, cols){
@@ -69,25 +59,22 @@ function hoverEffect(e){
 
     if (!mouseDown) return;
 
-    let rgb1, rgb2, rgb3;
     switch (drawingMode){
         case RAINBOW_MODE:
+            let rgb1, rgb2, rgb3;
             rgb1 = Math.floor(Math.random() * 255);
             rgb2 = Math.floor(Math.random() * 255);
             rgb3 = Math.floor(Math.random() * 255);
-            color = "rgb(" + rgb1+ ", " + rgb2 + ", " + rgb3 + ")";
+            color = "rgb(" + rgb1 + ", " + rgb2 + ", " + rgb3 + ")";
             e.target.style.background = color;
             break;
         case SHADING_MODE:
             currentColor = e.target.style.background;
             let rgbVals = extractRgbVals(currentColor);
-            rgb1 = rgbVals[0];
-            rgb2 = rgbVals[1];
-            rgb3 = rgbVals[2];
             newColor = "rgb(" 
-                + (rgb1 - SHADING_DARKENING_RATE) + ", " 
-                + (rgb2 - SHADING_DARKENING_RATE) + ", " 
-                + (rgb3 - SHADING_DARKENING_RATE) + ")";   
+                + (rgbVals[0] - SHADING_DARKENING_RATE) + ", " 
+                + (rgbVals[1] - SHADING_DARKENING_RATE) + ", " 
+                + (rgbVals[2] - SHADING_DARKENING_RATE) + ")";   
             e.target.style.background = newColor;
             break;
         default:
