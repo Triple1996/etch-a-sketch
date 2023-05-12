@@ -8,4 +8,5 @@
  * Using of HTML radio input buttons and have them maintain the back-end variables across refreshes
  * Using CSS Grid Layout with CSS variables to dynamically generate a grid of boxes
  * Attaching listeners onto \<div\> elements to listen for events (click, onmousedown, onmouseenter, onmouseexit)
+ * Using the HTML color picker and its oninput property
  
