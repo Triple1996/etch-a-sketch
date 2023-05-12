@@ -2,24 +2,39 @@
     --number-rows: 16;
     --number-cols: 16;
 }
-html {
-    background-color: rgb(227, 200, 253);
+
+html, body{
+    height: 95%;
+    width: 95%;
+    /* border: 1px dashed red; */
 }
+
+html {
+    background-color: rgb(230, 230, 230);
+}
+
 body{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+
 main{
     display: inherit;
-    flex-direction: inherit;
+    flex-direction: row;
     align-items: center;
 }
+
+#header{
+    margin-bottom: 50px;
+    margin-right: 50px;
+}
+
 #grid-container{
     box-shadow: 10px 10px 30px black;
     background-color: rgb(241, 241, 241);
-    margin-top: 10%;
+    margin-top: 5%;
     width: 600px;
     height: 600px;
     display: grid;
@@ -27,15 +42,51 @@ main{
     grid-template-columns: repeat(var(--number-cols), 1fr);
 }
 
-footer {
-    margin: 40px;
+#settings-container{
+    height: 450px;
+    width: 250px;
+    /* box-shadow: 10px 10px 20px black; */
+    border-radius: 10px;
+    border: 5px ridge black;
+    display: flex;
+    flex-direction: column;
+    margin: 50px;
+    align-items: center;
+    justify-content: center;
 }
+
+#slider-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#reset-button{
+    width: 100px;
+}
+
+.radio-button{
+    align-self: center;
+    padding: 10px;
+}
+
+footer {
+    width: 100%;
+    margin: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
 button{
     flex-direction: row;
     height: 35px;
     width: 250px;
     margin: 5px;
 }
+
 .grid-box{
-    border: solid lightgray 1px;
+    /* border: solid lightgray 1px; */
 }

@@ -6,31 +6,37 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
+        <h1 id="header">Etch-a-Sketch</h1>
         <main>
             <div id="settings-container">
 
                 <div id="slider-container">
+                    <text id="slider-display"></text>
                     <input type="range" min="2" max="100" value="16" id ="slider">
                 </div>
                 
                 <button id="reset-button">Clear Grid</button>
                 
-                <input 
-                    type="radio" 
-                    id="rainbow-button" 
-                    name="mode" 
-                    value="rainbow-mode"
-                    onChange="toggleRainbowMode"
-                    checked />
-                <label for="rainbow-button">Rainbow Mode</label>
-
-                <input 
-                    type="radio"
-                    id="shading-button"
-                    name="mode"
-                    value="shading-mode" 
-                    onChange="toggleShadingMode" />
-                <label for="shading-button">Shading Mode</label>
+                <div class="radio-button">
+                    <input 
+                        type="radio" 
+                        id="rainbow-button" 
+                        name="mode" 
+                        value="rainbow-mode"
+                        onChange="toggleRainbowMode"
+                        checked />
+                    <label for="rainbow-button">Rainbow Mode</label>
+                </div>
+                
+                <div class="radio-button">
+                    <input 
+                        type="radio"
+                        id="shading-button"
+                        name="mode"
+                        value="shading-mode" 
+                        onChange="toggleShadingMode" />
+                    <label for="shading-button">Shading Mode</label>
+                </div>
 
             </div>
             <div id="grid-container" draggable="false"></div>

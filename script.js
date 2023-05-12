@@ -6,10 +6,10 @@ const DEFAULT_SQUARES_PER_SIDE = 16;
 
 const gridContainer = document.querySelector('#grid-container');
 const slider = document.querySelector('#slider');
+const sliderDisplay = document.querySelector('#slider-display');
 const resetBtn = document.querySelector('#reset-button');
 const rainbowBtn = document.querySelector('#rainbow-button');
 const shadingBtn = document.querySelector('#shading-button');
-
 resetBtn.addEventListener('click', resetGrid);
 rainbowBtn.addEventListener('click', toggleRainbowMode);
 shadingBtn.addEventListener('click', toggleShadingMode);
@@ -22,7 +22,7 @@ slider.oninput  = function(){
     squaresPerSide = this.value;
     gridContainer.style.setProperty('--number-rows', squaresPerSide);
     gridContainer.style.setProperty('--number-cols', squaresPerSide);
-
+    sliderDisplay.innerHTML = squaresPerSide + " x " + squaresPerSide;
     resetGrid();
 }
 
@@ -31,6 +31,7 @@ function refresh(){
     gridContainer.style.setProperty('--number-rows', squaresPerSide);
     gridContainer.style.setProperty('--number-cols', squaresPerSide);
     drawingMode = rainbowBtn.checked ? RAINBOW_MODE : SHADING_MODE;
+    sliderDisplay.innerHTML = squaresPerSide + " x " + squaresPerSide;
 }
 
 function createGrid(rows, cols){
